@@ -86,7 +86,7 @@ main {
 }
 
 p {
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -97,6 +97,7 @@ div img:hover {
 #header {
   text-align: center;
   margin-top: 10%;
+  font-size: 32px;
 }
 
 #book-container {
