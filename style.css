@@ -69,3 +69,7 @@ position: relative;
     /* bottom: 5%; */
     top: 90%;
 }
+
+main {
+  border: 2px black;
+}
