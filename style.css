@@ -70,15 +70,17 @@ position: relative;
     top: 90%;
 }
 
-.flex-container {
+/* .flex-container {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .flex-item {
   margin: 10px;
   padding: 20px;
+  align-items: center;
+  text-align: center;
 }
 
 main {
@@ -90,7 +92,7 @@ p {
   text-align: center;
 }
 
-div img:hover {
+div>img:hover {
   box-shadow: black;
 }
 
@@ -102,8 +104,8 @@ div img:hover {
 
 #book-container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  align-items: center;
   grid-template-rows: auto;
-  
 
 }
