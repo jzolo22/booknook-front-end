@@ -70,6 +70,17 @@ position: relative;
     top: 90%;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-item {
+  margin: 10px;
+  padding: 20px;
+}
+
 main {
   border: 2px black;
 }

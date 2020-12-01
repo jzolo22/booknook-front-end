@@ -19,3 +19,24 @@ whiteArrow.addEventListener("click", scroll)
 blackArrow.addEventListener("click", scrollTwo)
 
 // ------------------------------------------------------------------------- //
+
+fetch("http://localhost:3000/books/941")
+.then(response => response.json())
+.then(book => {
+    renderOneBookCover(book)
+    console.log(book.image_url)
+})
+
+const firstImage = document.querySelector("#first")
+const secondImage = document.querySelector("#second")
+const thirdImage = document.querySelector("#third")
+console.log(firstImage)
+console.log(firstImage.src)
+
+function renderOneBookCover(book) {
+    
+    firstImage.src = book.image_url
+    firstImage.alt = book.title
+    
+
+}
