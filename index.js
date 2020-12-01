@@ -41,7 +41,7 @@ function fetchThreeBooks () {
     fetch("http://localhost:3000/books")
         .then(r => r.json())
         .then(bookArray => {
-            const newArray = bookArray.slice(2)
+            const newArray = bookArray.slice(0, 12)
             // console.log(newArray)
             bookContainer.innerHTML = ""
             newArray.forEach(book => {
