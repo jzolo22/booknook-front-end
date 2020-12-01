@@ -37,13 +37,33 @@ fetch("http://localhost:3000/books/1")
     console.log(book.image_url)
 })
 
+function fetchThreeBooks () {
+    fetch("http://localhost:3000/books")
+        .then(r => r.json())
+        .then(bookArray => {
+            const newArray = bookArray.slice(2)
+            // console.log(newArray)
+            bookContainer.innerHTML = ""
+            newArray.forEach(book => {
+                renderOneBookCover(book)
+            })
+        })
+}
+
+
 // ------------Render functions------------------------- //
 
 
 function renderOneBookCover(book) {
-    firstImage.src = book.image_url
-    firstImage.alt = book.title
-    firstImage.dataset.id = book.id
+    const newBookDiv = document.createElement("div")
+    newBookDiv.className = "flex-item"
+    const image = document.createElement("img")
+    image.src = book.image_url
+    image.alt = book.title
+    image.dataset.id = book.id
+
+    newBookDiv.append(image)
+    bookContainer.append(newBookDiv)
 }
 
 function renderBookInfoDiv(book, container) {
@@ -51,9 +71,8 @@ function renderBookInfoDiv(book, container) {
 
     // const title = document.createElement("h3")
     bookDiv.innerHTML = `
-        <h3>${book.title}</h3>
-        <h4>${book.author}</h4>
-        <p>${book.description}</p>
+        <p>${book.title}</p>
+        <p>by ${book.author}</p>
     `
     // bookDiv.append(title, )
     container.append(bookDiv)
@@ -64,7 +83,6 @@ bookContainer.addEventListener("click", event => {
     if (event.target.tagName === "IMG") {
         const id = event.target.dataset.id 
         const flexItem = event.target.closest("div")
-        console.log(flexItem)
 
         if (flexItem.childElementCount === 1) {
             fetch(`http://localhost:3000/books/${id}`)
@@ -82,3 +100,5 @@ bookContainer.addEventListener("click", event => {
         // append it to the flex item
     }
 })
+
+fetchThreeBooks()

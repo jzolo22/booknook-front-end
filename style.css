@@ -57,9 +57,9 @@ position: relative;
     text-align: center;
     position: absolute;
     top: 10%;
-    left: 50%;
+    /* left: 50%; */
     font-size: 24px;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
 }
 
 .black {
@@ -83,4 +83,26 @@ position: relative;
 
 main {
   border: 2px black;
+}
+
+p {
+  font-size: 10px;
+  text-align: center;
+}
+
+div img:hover {
+  box-shadow: black;
+}
+
+#header {
+  text-align: center;
+  margin-top: 10%;
+}
+
+#book-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto;
+  
+
 }
