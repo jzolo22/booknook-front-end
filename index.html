@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <script defer src="index.js"></script>
+    <script defer src="add-form.js"></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300&display=swap" rel="stylesheet">
 
@@ -36,44 +37,39 @@
 
     <div class="bg2 page-three">
         <h2 class="header">add/edit a book:</h2>
-
-        <div id="forms-container">
-            <div class="form-item">
-                <form id="add-book-form">
-                    <h3 class="form-title">add book</h3>
-                    <label for="title">title</label><br>
-                    <input name="title" type="text", placeholder="title"><br><br>
-                    <label for="author">author</label><br>
-                    <input name="author" type="text", placeholder="author"><br><br>
-                    <label for="genre">genre</label><br>
-                    <input name="genre" type="text", placeholder="genre"><br><br>
-                    <label for="image_url">link to image</label><br>
-                    <input name="image_url" type="text", placeholder="image"><br><br>
-                    <label for="year">year</label><br>
-                    <input name="year" type="text", placeholder="year"><br><br>
-                    <label for="description">description</label><br>
-                    <input name="description" type="text", placeholder="description"><br><br>
-                </form>
-            </div>  
-                <!-- <br><br><br><br><br> -->
-            <div class="form-item">
-                <form id="edit-book-form">
-                    <h3 class="form-title">edit book</h3>
-                    <label for="title">title</label><br>
-                    <input name="title" type="text", placeholder="title"><br><br>
-                    <label for="author">author</label><br>
-                    <input name="author" type="text", placeholder="author"><br><br>
-                    <label for="genre">genre</label><br>
-                    <input name="genre" type="text", placeholder="genre"><br><br>
-                    <label for="image_url">link to image</label><br>
-                    <input name="image_url" type="text", placeholder="image"><br><br>
-                    <label for="year">year</label><br>
-                    <input name="year" type="text", placeholder="year"><br><br>
-                    <label for="description">description</label><br>
-                    <input name="description" type="text", placeholder="description"><br><br>
-                </form>
-            </div>
-        </div>
+        <form autocomplete="off" id="add-book-form">
+            <h3>add book</h3>
+            <label for="title">title</label><br>
+            <input id= "add-title" name="title" type="text" placeholder="title"><br><br>
+            <label for="author">author</label><br>
+            <input id= "add-author" name="author" type="text", placeholder="author"><br><br>
+            <label for="genre">genre</label><br>
+            <input id= "add-genre" name="genre" type="text", placeholder="genre"><br><br>
+            <label for="image_url">link to image</label><br>
+            <input id= "add-image" name="image_url" type="text", placeholder="image"><br><br>
+            <label for="year">year</label><br>
+            <input id= "add-year" name="year" type="text", placeholder="year"><br><br>
+            <label for="description">description</label><br>
+            <input id= "add-description" name="description" type="text", placeholder="description"><br><br>
+            <input id="add-submit" type="submit" placeholder="submit">
+        </form>
+        <br><br><br><br><br>
+        <form id="edit-book-form">
+            <h3>edit book</h3>
+            <label for="title">title</label><br>
+            <input name="title" type="text", placeholder="title"><br><br>
+            <label for="author">author</label><br>
+            <input name="author" type="text", placeholder="author"><br><br>
+            <label for="genre">genre</label><br>
+            <input name="genre" type="text", placeholder="genre"><br><br>
+            <label for="image_url">link to image</label><br>
+            <input name="image_url" type="text", placeholder="image"><br><br>
+            <label for="year">year</label><br>
+            <input name="year" type="text", placeholder="year"><br><br>
+            <label for="description">description</label><br>
+            <input name="description" type="text", placeholder="description"><br><br>
+            <input id="edit-submit" type="submit" placeholder="submit">
+        </form>
     </div>
 
    
