@@ -124,6 +124,7 @@ p:hover, div>img:hover {
 
 .form-item {
   text-align: center;
+  justify-content: center;
 }
 
 .hvr-float-shadow {

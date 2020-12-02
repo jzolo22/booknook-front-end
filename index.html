@@ -60,6 +60,22 @@
             </div>
 
             <div class="form-item">
+                <form autocomplete="off" id="add-review-form">
+                    <h3>write a review</h3>
+                    <label for="title">title</label><br>
+                    <input id= "add-title" name="title" type="text" placeholder="title"><br>
+                    <h4>recommend?</h4>
+                    <input type="radio" id="true" name="recommend" value="true">
+                    <label for="true">yes</label>
+                    <input type="radio" id="false" name="recommend" value="false">
+                    <label for="false">no</label><br><br>
+                    <label for="review">review</label><br>
+                    <textarea id= "add-review" name="review" rows="17" cols="40" type="textarea", placeholder="review"></textarea><br><br>
+                    <input id="review-submit" type="submit" placeholder="submit">
+                </form>
+            </div>
+
+            <div class="form-item">
                 <form id="edit-book-form">
                     <h3>edit book</h3>
                     <label for="title">title</label><br>
@@ -73,7 +89,7 @@
                     <label for="year">year</label><br>
                     <input name="year" type="text", placeholder="year"><br><br>
                     <label for="description">description</label><br>
-                    <input name="description" type="text", placeholder="description"><br><br>
+                    <textarea name="description" rows="10" cols="20" type="textarea", placeholder="description"></textarea><br><br>
                     <input id="edit-submit" type="submit" placeholder="submit">
                 </form>
             </div>

@@ -28,6 +28,7 @@ const thirdImage = document.querySelector("#third")
 const bookContainer = document.querySelector("#book-container")
 const editBookForm = document.querySelector("#edit-book-form")
 const editForm = document.querySelector("#edit-book-form")
+const reviewForm = document.querySelector("#add-review-form")
 
 // ------------Fetch functions------------------------- //
 
@@ -116,8 +117,9 @@ document.body.addEventListener("click", event => {
         fetch(`http://localhost:3000/books/${editId}`)
         .then(r => r.json())
         .then(bookObject => {
-            console.log(bookObject)
             formFill(bookObject)
+            reviewForm.title.value = bookObject.title
+            reviewForm.dataset.id = bookObject.id
         })
     }
     
@@ -152,6 +154,14 @@ editForm.addEventListener("submit", event => {
 
     
     
+})
+
+reviewForm.addEventListener("submit", event => {
+    event.preventDefault()
+    const reviewBookId = parseInt(reviewForm.dataset.id)
+    const reviewObject = {
+        
+    }
 })
 
 
