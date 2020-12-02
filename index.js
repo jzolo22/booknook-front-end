@@ -93,4 +93,7 @@ bookContainer.addEventListener("click", event => {
     }
 })
 
+
+// ------------Initialize------------------------- //
+
 fetchBooks()
