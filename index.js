@@ -84,6 +84,9 @@ function submitName(event) {
     name = nameForm.name.value
     h2.textContent = `come on in, ${name}`
     nameForm.reset()
+
+    // I think we might have to do a post request here to also create a user in the back end
+    // unless we just use this info to complete the review form, and then submit the username info along with the review form & create a user that way
 }
 
 // ------------Event Listener------------------------- //
