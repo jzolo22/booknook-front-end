@@ -13,8 +13,6 @@ function addBookFetch(bookObj) {
         },
         body: JSON.stringify(bookObj)
     })
-        .then(r => r.json())
-        .then(console.log)
 }
 
 
