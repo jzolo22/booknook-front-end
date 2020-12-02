@@ -16,7 +16,7 @@ const scrollTwo = () => {
 }
 
 whiteArrow.addEventListener("click", scroll)
-blackArrow.addEventListener("click", scrollTwo)
+// blackArrow.addEventListener("click", scrollTwo)
 
 // ------------------------------------------------------------------------- //
 
@@ -72,6 +72,7 @@ function renderBookInfoDiv(book, container) {
     bookDiv.innerHTML = `
         <p>${book.title}</p>
         <p>by ${book.author}</p>
+        <a href="#add-book-form">more details</a>
     `
     container.append(bookDiv)
 }
