@@ -33,7 +33,8 @@ const editForm = document.querySelector("#edit-book-form")
 const reviewForm = document.querySelector("#add-review-form")
 const reviewBox = document.querySelector("#review-box")
 const editReviewForm = document.querySelector("#edit-review-form")
-const reviewDiv = document.querySelector("#review-form")
+const addReviewDiv = document.querySelector("#add-review-div")
+const editReviewDiv = document.querySelector("#edit-review-div")
 
 
 // ------------Fetch functions------------------------- //
@@ -222,16 +223,17 @@ reviewForm.addEventListener("submit", event => {
 
 reviewBox.addEventListener("click", event => {
     if(event.target.tagName === "BUTTON") {
-        // reviewDiv.style.display = "none"
-        // editReviewForm.style.display = "block"
+        console.log("clicked")
+        addReviewDiv.style.display = "none"
+        editReviewDiv.style.display = "block"
         const id = parseInt(event.target.dataset.id)
         fetch(`http://localhost:3000/reviews/${id}`)
         .then(r => r.json())
         .then(reviewObject => {
-            reviewForm.title.value = reviewObject.title
-            reviewForm.rating.value = reviewObject.rating
-            reviewForm.review.value = reviewObject.comment
-            reviewForm.recommend.value = reviewObject.recommend
+            editReviewForm.title.value = reviewObject.title
+            editReviewForm.rating.value = reviewObject.rating
+            editReviewForm.review.value = reviewObject.comment
+            editReviewForm.recommend.value = reviewObject.recommend
         })
 
     }
