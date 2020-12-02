@@ -92,6 +92,11 @@ p {
   text-align: center;
 }
 
+div>img {
+  width: 128px;
+  height: 192px;
+}
+
 p:hover, div>img:hover {
   box-shadow: black;
 }
