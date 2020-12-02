@@ -2,6 +2,7 @@ const nameForm = document.querySelector("#username-form")
 const h2 = document.querySelector("h2")
 
 let name
+let userId
 
 
 nameForm.addEventListener("submit", submitName)
@@ -16,7 +17,9 @@ function createUser(name) {
         body: JSON.stringify(newUser)
     })
         .then(r => r.json())
-        .then(console.log)
+        .then(newUserObj => {
+            userId = newUserObj.id
+        })
 }
 
 
