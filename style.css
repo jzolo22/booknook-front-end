@@ -158,3 +158,9 @@ p:hover, div>img:hover {
   margin-right: 80%;
   text-align: center;
 }
+
+#name {
+  outline: none;
+  background-color: white;
+  color: black;
+}

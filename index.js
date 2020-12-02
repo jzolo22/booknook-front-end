@@ -79,9 +79,11 @@ function renderBookInfoDiv(book, container) {
     container.append(bookDiv)
 }
 
-function submitName() {
-   name = nameForm.name.value
+function submitName(event) {
+    event.preventDefault()
+    name = nameForm.name.value
     h2.textContent = `come on in, ${name}`
+    nameForm.reset()
 }
 
 // ------------Event Listener------------------------- //
