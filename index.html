@@ -65,7 +65,32 @@
                 </form>
             </div>
 
-            <div class="form-item">
+            <div style="display: none" class="form-item"  id="edit-review-form">
+                <form autocomplete="off" id="add-review-form">
+                    <h3>edit review</h3>
+                    <label for="title">title</label><br>
+                    <input id= "add-title" name="title" type="text" placeholder="title"><br><br>
+                    <label>rating:</label><br>
+                    <select name="rating" id="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select><br><br>
+            
+                    <label for="review">review</label><br>
+                    <textarea id= "add-review" name="review" rows="17" cols="40" type="textarea", placeholder="review"></textarea><br><br>
+                    <label>recommend?</label><br>
+                    <input type="radio" id="true" name="recommend" value="true">
+                    <label for="true">yes</label>
+                    <input type="radio" id="false" name="recommend" value="false">
+                    <label for="false">no</label><br><br>
+                    <input id="review-submit" type="submit" placeholder="submit">
+                </form>
+            </div>
+
+            <div class="form-item"  id="review-form">
                 <form autocomplete="off" id="add-review-form">
                     <h3>write a review</h3>
                     <label for="title">title</label><br>
@@ -88,6 +113,14 @@
                     <label for="false">no</label><br><br>
                     <input id="review-submit" type="submit" placeholder="submit">
                 </form>
+            </div>
+
+            <div class="form-item" id="outer-review-box">
+                <h3>reviews:</h3>
+                <div id="review-box">
+
+                </div>
+
             </div>
 
             <div class="form-item">
