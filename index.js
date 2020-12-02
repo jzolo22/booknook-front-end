@@ -42,7 +42,6 @@ function fetchBooks () {
         .then(r => r.json())
         .then(bookArray => {
             const newArray = bookArray.slice(0, 12)
-            // console.log(newArray)
             bookContainer.innerHTML = ""
             newArray.forEach(book => {
                 renderOneBookCover(book)
@@ -58,6 +57,7 @@ function renderOneBookCover(book) {
     const newBookDiv = document.createElement("div")
     newBookDiv.className = "flex-item"
     const image = document.createElement("img")
+    image.classList.add("hvr-float-shadow")
     image.src = book.image_url
     image.alt = book.title
     image.dataset.id = book.id
@@ -69,12 +69,10 @@ function renderOneBookCover(book) {
 function renderBookInfoDiv(book, container) {
     const bookDiv = document.createElement("div")
 
-    // const title = document.createElement("h3")
     bookDiv.innerHTML = `
         <p>${book.title}</p>
         <p>by ${book.author}</p>
     `
-    // bookDiv.append(title, )
     container.append(bookDiv)
 }
 
@@ -89,7 +87,6 @@ bookContainer.addEventListener("click", event => {
                 .then(r => r.json())
                 .then(bookObj => renderBookInfoDiv(bookObj, flexItem))
         } else {
-            // debugger
             const div = flexItem.querySelector("div")
             flexItem.removeChild(div)
         }
