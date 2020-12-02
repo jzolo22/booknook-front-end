@@ -96,7 +96,7 @@ div>img:hover {
   box-shadow: black;
 }
 
-#header {
+.header {
   text-align: center;
   margin-top: 10%;
   font-size: 32px;

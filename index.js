@@ -73,6 +73,7 @@ function renderBookInfoDiv(book, container) {
     bookDiv.innerHTML = `
         <p>${book.title}</p>
         <p>by ${book.author}</p>
+        <a href="#review-form">Leave a Review</a>
     `
     // bookDiv.append(title, )
     container.append(bookDiv)
