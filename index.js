@@ -35,7 +35,7 @@ const reviewBox = document.querySelector("#review-box")
 const editReviewForm = document.querySelector("#edit-review-form")
 const addReviewDiv = document.querySelector("#add-review-div")
 const editReviewDiv = document.querySelector("#edit-review-div")
-
+let reviewId
 
 // ------------Fetch functions------------------------- //
 
@@ -102,19 +102,22 @@ function formFill(bookObject) {
 
 function renderReview(review) {
     const reviewDiv = document.createElement("div")
+    reviewDiv.dataset.id = review.id
     const editButton = document.createElement("button")
     editButton.textContent = "edit"
-
+    // reviewId = review.id
+    // debugger
     editButton.dataset.id = review.id
-
-
-
-
 
     reviewDiv.textContent =`"${review.comment}" -${review.username}`
 
     reviewBox.append(reviewDiv, editButton)
 
+}
+
+function renderUpdatedReview(newReview) {
+    const reviewDiv = reviewBox.querySelector(`div[data-id="${newReview.id}"]`)
+    reviewDiv.textContent =`"${newReview.comment}" -${newReview.username}`
 }
 
 // ------------Event Listener------------------------- //
@@ -160,6 +163,28 @@ document.body.addEventListener("click", event => {
         })
     }
     
+})
+
+editReviewForm.addEventListener("submit", event => {
+    event.preventDefault()
+    
+    const editedReviewObject = {
+        comment: event.target.review.value,
+        recommend: event.target.recommend.value,
+        rating: parseInt(event.target.rating.value),
+    }
+
+    fetch(`http://localhost:3000/reviews/${reviewId}`, {
+        method: "PATCH", 
+        headers: {
+            "Content-Type": "application/json"
+        }, 
+        body: JSON.stringify(editedReviewObject)
+    })
+        .then(r => r.json())
+        .then(updatedReview => {
+            renderUpdatedReview(updatedReview)
+        })
 })
 
 editForm.addEventListener("submit", event => {
@@ -223,11 +248,11 @@ reviewForm.addEventListener("submit", event => {
 
 reviewBox.addEventListener("click", event => {
     if(event.target.tagName === "BUTTON") {
-        console.log("clicked")
+        console.log("clicked") 
         addReviewDiv.style.display = "none"
         editReviewDiv.style.display = "block"
-        const id = parseInt(event.target.dataset.id)
-        fetch(`http://localhost:3000/reviews/${id}`)
+        reviewId = parseInt(event.target.dataset.id)
+        fetch(`http://localhost:3000/reviews/${reviewId}`)
         .then(r => r.json())
         .then(reviewObject => {
             editReviewForm.title.value = reviewObject.title
