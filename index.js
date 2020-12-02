@@ -139,12 +139,12 @@ document.body.addEventListener("click", event => {
         // const addReviewForm = document.querySelector("#add-review-form")
         const editId = parseInt(event.target.parentElement.dataset.id)
         
-        // if (reviewDiv.style.display === "none") {
-        //     reviewDiv.style.display = "block"
-        // }
-        // if(editReviewForm.style.display === "block") {
-        //     editReviewForm.style.display = "none"
-        // }
+        if (addReviewDiv.style.display === "none") {
+            addReviewDiv.style.display = "block"
+        }
+        if(editReviewDiv.style.display === "block") {
+            editReviewDiv.style.display = "none"
+        }
         
         fetch(`http://localhost:3000/books/${editId}`)
         .then(r => r.json())
