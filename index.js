@@ -135,18 +135,20 @@ bookContainer.addEventListener("click", event => {
 
 document.body.addEventListener("click", event => {
     if (event.target.id === "more-details") {
+        // const addReviewForm = document.querySelector("#add-review-form")
         const editId = parseInt(event.target.parentElement.dataset.id)
-        if (reviewDiv.style.display === "none") {
-            reviewDiv.style.display = "block"
-        }
-        if(editReviewForm.style.display === "block") {
-            editReviewForm.style.display = "none"
-        }
         
-
+        // if (reviewDiv.style.display === "none") {
+        //     reviewDiv.style.display = "block"
+        // }
+        // if(editReviewForm.style.display === "block") {
+        //     editReviewForm.style.display = "none"
+        // }
+        
         fetch(`http://localhost:3000/books/${editId}`)
         .then(r => r.json())
         .then(bookObject => {
+           
             formFill(bookObject)
             reviewForm.title.value = bookObject.title
             reviewForm.dataset.id = bookObject.id
@@ -220,8 +222,8 @@ reviewForm.addEventListener("submit", event => {
 
 reviewBox.addEventListener("click", event => {
     if(event.target.tagName === "BUTTON") {
-        reviewDiv.style.display = "none"
-        editReviewForm.style.display = "block"
+        // reviewDiv.style.display = "none"
+        // editReviewForm.style.display = "block"
         const id = parseInt(event.target.dataset.id)
         fetch(`http://localhost:3000/reviews/${id}`)
         .then(r => r.json())
