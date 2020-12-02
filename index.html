@@ -69,14 +69,23 @@
                 <form autocomplete="off" id="add-review-form">
                     <h3>write a review</h3>
                     <label for="title">title</label><br>
-                    <input id= "add-title" name="title" type="text" placeholder="title"><br>
-                    <h4>recommend?</h4>
+                    <input id= "add-title" name="title" type="text" placeholder="title"><br><br>
+                    <label>rating:</label><br>
+                    <select name="rating" id="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select><br><br>
+            
+                    <label for="review">review</label><br>
+                    <textarea id= "add-review" name="review" rows="17" cols="40" type="textarea", placeholder="review"></textarea><br><br>
+                    <label>recommend?</label><br>
                     <input type="radio" id="true" name="recommend" value="true">
                     <label for="true">yes</label>
                     <input type="radio" id="false" name="recommend" value="false">
                     <label for="false">no</label><br><br>
-                    <label for="review">review</label><br>
-                    <textarea id= "add-review" name="review" rows="17" cols="40" type="textarea", placeholder="review"></textarea><br><br>
                     <input id="review-submit" type="submit" placeholder="submit">
                 </form>
             </div>
