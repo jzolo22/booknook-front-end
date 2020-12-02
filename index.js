@@ -20,6 +20,8 @@ whiteArrow.addEventListener("click", scroll)
 
 // ------------------------------------------------------------------------- //
 
+
+
 // ------------DOM elements------------------------- //
 
 const firstImage = document.querySelector("#first")
@@ -149,9 +151,7 @@ editForm.addEventListener("submit", event => {
         renderBookInfoDiv(bookObject, bookDiv)
 
     })
-
-    
-    
+ 
 })
 
 
