@@ -115,6 +115,17 @@ p:hover, div>img:hover {
 
 }
 
+#forms-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  align-items: center;
+  grid-template-rows: auto;
+}
+
+.form-item {
+  text-align: center;
+}
+
 .hvr-float-shadow {
   display: inline-block;
   vertical-align: middle;

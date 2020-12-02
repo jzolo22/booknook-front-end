@@ -26,6 +26,8 @@ const firstImage = document.querySelector("#first")
 const secondImage = document.querySelector("#second")
 const thirdImage = document.querySelector("#third")
 const bookContainer = document.querySelector("#book-container")
+const editBookForm = document.querySelector("#edit-book-form")
+const editForm = document.querySelector("#edit-book-form")
 
 // ------------Fetch functions------------------------- //
 
@@ -68,13 +70,26 @@ function renderOneBookCover(book) {
 
 function renderBookInfoDiv(book, container) {
     const bookDiv = document.createElement("div")
+    bookDiv.dataset.id = book.id
 
     bookDiv.innerHTML = `
         <p>${book.title}</p>
         <p>by ${book.author}</p>
-        <a href="#add-book-form">more details</a>
+        <a href="#add-book-form" id="more-details">more details</a>
     `
+
     container.append(bookDiv)
+}
+
+function formFill(bookObject) {
+    editBookForm.title.value = bookObject.title
+    editBookForm.author.value = bookObject.author
+    editBookForm.genre.value = bookObject.genre
+    editBookForm.image_url.value = bookObject.image_url
+    editBookForm.year.value = bookObject.year 
+    editBookForm.description.value = bookObject.description
+    editBookForm.dataset.id = bookObject.id
+    
 }
 
 // ------------Event Listener------------------------- //
@@ -93,6 +108,52 @@ bookContainer.addEventListener("click", event => {
         }
     }
 })
+
+document.body.addEventListener("click", event => {
+    if (event.target.id === "more-details") {
+        const editId = parseInt(event.target.parentElement.dataset.id)
+
+        fetch(`http://localhost:3000/books/${editId}`)
+        .then(r => r.json())
+        .then(bookObject => {
+            console.log(bookObject)
+            formFill(bookObject)
+        })
+    }
+    
+})
+
+editForm.addEventListener("submit", event => {
+    event.preventDefault()
+    const editFormId = parseInt(event.target.dataset.id)
+    const bookDiv = document.querySelector(`div[data-id="${editFormId}"]`)
+    const editFormObject = {
+        "title": editBookForm.title.value,
+        "author": editBookForm.author.value,
+        "genre": editBookForm.genre.value,
+        "image_url": editBookForm.image_url.value,
+        "year": editBookForm.year.value,
+        "description": editBookForm.description.value
+    }
+    
+    fetch(`http://localhost:3000/books/${editFormId}`, {
+        method: "PATCH",
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(editFormObject)
+    })
+    .then(r => r.json())
+    .then(bookObject => {
+        bookDiv.innerHTML = ""
+        renderBookInfoDiv(bookObject, bookDiv)
+
+    })
+
+    
+    
+})
+
 
 
 // ------------Initialize------------------------- //
