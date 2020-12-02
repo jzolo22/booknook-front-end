@@ -151,3 +151,10 @@ p:hover, div>img:hover {
   transform: translateY(8px);
   /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
 }
+
+#username-form {
+  padding-top: 10px;
+  padding-left: 10px;
+  margin-right: 80%;
+  text-align: center;
+}

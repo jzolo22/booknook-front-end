@@ -26,6 +26,9 @@ const firstImage = document.querySelector("#first")
 const secondImage = document.querySelector("#second")
 const thirdImage = document.querySelector("#third")
 const bookContainer = document.querySelector("#book-container")
+const nameForm = document.querySelector("#username-form")
+const h2 = document.querySelector("h2")
+let name
 
 // ------------Fetch functions------------------------- //
 
@@ -76,6 +79,11 @@ function renderBookInfoDiv(book, container) {
     container.append(bookDiv)
 }
 
+function submitName() {
+   name = nameForm.name.value
+    h2.textContent = `come on in, ${name}`
+}
+
 // ------------Event Listener------------------------- //
 bookContainer.addEventListener("click", event => {
     if (event.target.tagName === "IMG") {
@@ -92,6 +100,8 @@ bookContainer.addEventListener("click", event => {
         }
     }
 })
+
+nameForm.addEventListener("submit", submitName)
 
 
 // ------------Initialize------------------------- //
