@@ -107,5 +107,6 @@ div>img:hover {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   align-items: center;
   grid-template-rows: auto;
+  overflow: hidden;
 
 }
