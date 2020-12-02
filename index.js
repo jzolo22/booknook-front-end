@@ -30,14 +30,14 @@ const bookContainer = document.querySelector("#book-container")
 // ------------Fetch functions------------------------- //
 
 
-fetch("http://localhost:3000/books/1")
-.then(response => response.json())
-.then(book => {
-    renderOneBookCover(book)
-    console.log(book.image_url)
-})
+// fetch("http://localhost:3000/books/1")
+// .then(response => response.json())
+// .then(book => {
+//     renderOneBookCover(book)
+//     console.log(book.image_url)
+// })
 
-function fetchThreeBooks () {
+function fetchBooks () {
     fetch("http://localhost:3000/books")
         .then(r => r.json())
         .then(bookArray => {
@@ -93,12 +93,7 @@ bookContainer.addEventListener("click", event => {
             const div = flexItem.querySelector("div")
             flexItem.removeChild(div)
         }
-
-
-        // fetch to that id
-        // create a div 
-        // append it to the flex item
     }
 })
 
-fetchThreeBooks()
+fetchBooks()
