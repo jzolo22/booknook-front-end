@@ -16,7 +16,7 @@ const scrollTwo = () => {
 }
 
 whiteArrow.addEventListener("click", scroll)
-blackArrow.addEventListener("click", scrollTwo)
+// blackArrow.addEventListener("click", scrollTwo)
 
 // ------------------------------------------------------------------------- //
 
