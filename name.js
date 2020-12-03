@@ -7,16 +7,15 @@ const bgImg = document.querySelector("#bg-img")
 let name
 let userId
 
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+  }
+
+onbeforeunload()
 
 nameForm.addEventListener("submit", submitName)
 
 function createUser(name) {
-    const pageOne = document.querySelector(".bg1");
-    pageOne.scrollIntoView({behavior: "smooth"});
-    loginForm.style.display = "none"
-    heroText.style.display = "block"
-    bgImg.style.display = "block"
-
     fetch("http://localhost:3000/users", {
         method: "POST", 
         headers: {
@@ -33,6 +32,14 @@ function createUser(name) {
 
 function submitName(event) {
     event.preventDefault()
+
+    loginForm.style.display = "none"
+    bgImg.style.display = "none"
+
+    const pageOne = document.querySelector(".bg1");
+    pageOne.scrollIntoView({behavior: "smooth"});
+
+    heroText.style.display = "block"
     name = nameForm.name.value
     h2.textContent = `come on in, ${name}`
 

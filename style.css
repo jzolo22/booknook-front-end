@@ -15,10 +15,10 @@ body, html {
     user-select: none;
   }
   .bg-img {
-    /* background-image: url(); */
+    background-image: url(assets/bookshelf-us-.jpg);
   
     height: 100%;
-    background-image: linear-gradient(rgba(136, 77, 77, 0.5), rgba(216, 0, 0, 0.274)), url("assets/background1.jpg");
+    /* background-image: linear-gradient(rgba(136, 77, 77, 0.5), rgba(216, 0, 0, 0.274)), url("assets/background1.jpg"); */
   
     background-position: center;
     background-repeat: no-repeat;
