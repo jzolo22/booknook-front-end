@@ -2,7 +2,7 @@
 // ---------------------------Page Scroll--------------------------------- //
 
 const whiteArrow = document.querySelector(".arrow.down")
-const blackArrow = document.querySelector(".arrow.down.black")
+const blackArrow = document.querySelector("#book-arrow")
 
 
 const scroll = () => {
@@ -10,13 +10,23 @@ const scroll = () => {
     pageTwo.scrollIntoView({behavior: "smooth"});
 }
 
-const scrollTwo = () => {
-    const pageThree = document.querySelector(".bg2.page-three");
-    pageThree.scrollIntoView({behavior: "smooth"});
+const moreBooks = () => {
+    // const pageThree = document.querySelector(".bg2.page-three");
+    // pageThree.scrollIntoView({behavior: "smooth"});
+
+        fetch("http://localhost:3000/books")
+            .then(r => r.json())
+            .then(bookArray => {
+                const newArray = bookArray.slice(0, 12)
+                newArray.forEach(book => {
+                    renderOneBookCover(book)
+                })
+            })
+    
 }
 
 whiteArrow.addEventListener("click", scroll)
-// blackArrow.addEventListener("click", scrollTwo)
+blackArrow.addEventListener("click", moreBooks)
 
 // ------------------------------------------------------------------------- //
 
@@ -104,14 +114,17 @@ function renderReview(review) {
     const reviewDiv = document.createElement("div")
     reviewDiv.dataset.id = review.id
     const editButton = document.createElement("button")
-    editButton.textContent = "edit"
-    // reviewId = review.id
-    // debugger
+    const deleteButton = document.createElement("button")
+    deleteButton.dataset.id = review.id
+    deleteButton.id = "delete-button"
+    editButton.id = "edit-button"
     editButton.dataset.id = review.id
+    editButton.textContent = "edit"
+    deleteButton.textContent = "delete"
 
     reviewDiv.textContent =`"${review.comment}" -${review.username}`
 
-    reviewBox.append(reviewDiv, editButton)
+    reviewBox.append(reviewDiv, editButton, deleteButton)
 
 }
 
@@ -239,15 +252,16 @@ reviewForm.addEventListener("submit", event => {
     })
     .then(r => r.json())
     .then(review => {
-        reviewBox.innerHTML = ""
+        // reviewBox.innerHTML = ""
         renderReview(review)
         // console.log(review)
     } )
 
+    event.target.reset()
 })
 
 reviewBox.addEventListener("click", event => {
-    if(event.target.tagName === "BUTTON") {
+    if(event.target.matches("#edit-button")) {
         console.log("clicked") 
         addReviewDiv.style.display = "none"
         editReviewDiv.style.display = "block"
@@ -261,6 +275,26 @@ reviewBox.addEventListener("click", event => {
             editReviewForm.recommend.value = reviewObject.recommend
         })
 
+    } else if(event.target.matches("#delete-button")) {
+        const id = parseInt(event.target.dataset.id)
+        fetch(`http://localhost:3000/reviews/${id}`, {
+            method: "DELETE",
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(r => r.json())
+        .then(console.log)
+
+        const reviewDiv = document.querySelector(`div[data-id="${id}"]`)
+        const button = document.querySelectorAll(`button[data-id="${id}"]`)
+        
+        button.forEach(button => {
+            button.remove()
+        })
+        // button.remove()
+        reviewDiv.remove()
+        
     }
 })
 

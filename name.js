@@ -1,5 +1,8 @@
 const nameForm = document.querySelector("#username-form")
+const loginForm = document.querySelector("#login-content")
 const h2 = document.querySelector("h2")
+const heroText = document.querySelector("#hero-text")
+const bgImg = document.querySelector("#bg-img")
 
 let name
 let userId
@@ -8,6 +11,11 @@ let userId
 nameForm.addEventListener("submit", submitName)
 
 function createUser(name) {
+    const pageOne = document.querySelector(".bg1");
+    pageOne.scrollIntoView({behavior: "smooth"});
+    loginForm.style.display = "none"
+    heroText.style.display = "block"
+    bgImg.style.display = "block"
 
     fetch("http://localhost:3000/users", {
         method: "POST", 
