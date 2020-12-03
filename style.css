@@ -15,7 +15,7 @@ body, html {
     user-select: none;
   }
   .bg-img {
-    background-image: url(assets/bookshelf-us-.jpg);
+    background-image: url(assets/open-book.jpg);
   
     height: 100%;
     /* background-image: linear-gradient(rgba(136, 77, 77, 0.5), rgba(216, 0, 0, 0.274)), url("assets/background1.jpg"); */
@@ -33,7 +33,7 @@ body, html {
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.274);
   }
   .content{
     position: fixed;
@@ -89,24 +89,10 @@ body, html {
     cursor: pointer;
     /* font-family: 'Montserrat',sans-serif; */
   }
-  .pass-key:valid ~ .show{
-    display: block;
-  }
-  .pass{
-    text-align: left;
-    margin: 10px 0;
-  }
-  .pass a{
-    color: white;
-    text-decoration: none;
-    /* font-family: 'Poppins',sans-serif; */
-  }
-  .pass:hover a{
-    text-decoration: underline;
-  }
+
   .field input[type="submit"]{
-    background: #3498db;
-    border: 1px solid #2691d9;
+    background: #162708bd;
+    border: 1px solid #162708bd;
     color: white;
     font-size: 18px;
     letter-spacing: 1px;
@@ -115,7 +101,7 @@ body, html {
     /* font-family: 'Montserrat',sans-serif; */
   }
   .field input[type="submit"]:hover{
-    background: #2691d9;
+    background: #162708bd;
   }
   .login{
     color: white;
@@ -135,7 +121,7 @@ body, html {
     /* font-family: 'Poppins',sans-serif; */
   }
   .signup a{
-    color: #3498db;
+    color: #162708bd;
     text-decoration: none;
   }
   .signup a:hover{
@@ -321,4 +307,27 @@ p:hover, div>img:hover {
   -webkit-transform: translateY(8px);
   transform: translateY(8px);
   /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+
+
+.form-popup {
+  display: none;
+  position: sticky;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: sticky;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
 }

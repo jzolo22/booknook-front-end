@@ -1,4 +1,3 @@
-function initialLoad(){
 // ---------------------------Page Scroll--------------------------------- //
 
 const whiteArrow = document.querySelector(".arrow.down")
@@ -302,4 +301,4 @@ reviewBox.addEventListener("click", event => {
 
 // ------------Initialize------------------------- //
 
-fetchBooks()}
+fetchBooks()
