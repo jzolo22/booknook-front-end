@@ -100,6 +100,7 @@ function formFill(bookObject) {
     editBookForm.dataset.id = bookObject.id
 }
 
+
 function renderReview(review) {
     const reviewDiv = document.createElement("div")
     reviewDiv.dataset.id = review.id
@@ -108,10 +109,14 @@ function renderReview(review) {
     editButton.dataset.id = review.id
     editButton.id = "edit-button"
     editButton.textContent = "edit"
+     editButton.classList.add("trigger")
 
     const deleteButton = document.createElement("button")
     deleteButton.dataset.id = review.id
     deleteButton.id = "delete-button"
+
+   
+
     deleteButton.textContent = "delete"
 
     reviewDiv.textContent =`"${review.comment}" -${review.username}`
@@ -146,12 +151,12 @@ const moreDetailsClick = (event) => {
     if (event.target.id === "more-details") {
         const editId = parseInt(event.target.parentElement.dataset.id)
         
-        if (addReviewDiv.style.display === "none") {
-            addReviewDiv.style.display = "block"
-        }
-        if(editReviewDiv.style.display === "block") {
-            editReviewDiv.style.display = "none"
-        }
+        // if (addReviewDiv.style.display === "none") {
+        //     addReviewDiv.style.display = "block"
+        // }
+        // if(editReviewDiv.style.display === "block") {
+        //     editReviewDiv.style.display = "none"
+        // }
         
         fetchBook(editId)
             .then(bookObject => {
@@ -244,10 +249,11 @@ const submitReviewForm = (event) => {
     event.target.reset()
 }
 
+
 const editOrDeleteReview = (event) => {
     if (event.target.matches("#edit-button")) {
-        addReviewDiv.style.display = "none"
-        editReviewDiv.style.display = "block"
+//         addReviewDiv.style.display = "none"
+//         editReviewDiv.style.display = "block"
         reviewId = parseInt(event.target.dataset.id)
         fetch(`${url}/reviews/${reviewId}`)
             .then(r => r.json())
