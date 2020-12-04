@@ -11,7 +11,7 @@ const scroll = () => {
 }
 
 const moreBooks = () => {
-    fetch("http://localhost:3000/books")
+    fetch(`${url}/books`)
         .then(r => r.json())
         .then(bookArray => {
             const newArray = bookArray.slice(0, 12)
@@ -43,7 +43,7 @@ const addReviewDiv = document.querySelector("#add-review-div")
 const editReviewDiv = document.querySelector("#edit-review-div")
 let reviewId
 
-// ------------Fetch functions------------------------- //
+// ------------Fetch Functions------------------------- //
 
 const url = "http://localhost:3000"
 
@@ -61,11 +61,10 @@ function fetchBooks () {
 
 function fetchBook(id) {
     return fetch(`${url}/books/${id}`)
-    .then(r => r.json())
+        .then(r => r.json())
 }
 
-// ------------Render functions------------------------- //
-
+// ------------Render Functions------------------------- //
 
 function renderOneBookCover(book) {
     const newBookDiv = document.createElement("div")
@@ -124,6 +123,9 @@ function renderUpdatedReview(newReview) {
     const reviewDiv = reviewBox.querySelector(`div[data-id="${newReview.id}"]`)
     reviewDiv.textContent =`"${newReview.comment}" -${newReview.username}`
 }
+
+// ------------Event Handler Functions------------------------- //
+
 
 const toggleBookInfoDiv = (event) => {
     if (event.target.tagName === "IMG") {
@@ -201,7 +203,7 @@ const submitEditBookForm = event => {
         "description": editBookForm.description.value
     }
     
-    fetch(`http://localhost:3000/books/${editFormId}`, {
+    fetch(`${url}/books/${editFormId}`, {
         method: "PATCH",
         headers: {
             'content-type': 'application/json'
@@ -226,8 +228,8 @@ const submitReviewForm = (event) => {
         user_id: userId,
         book_id: reviewBookId
     }
-
-    fetch("http://localhost:3000/reviews", {
+    
+    fetch(`${url}/reviews`, {
         method: "POST",
         headers: {
             'content-type': 'application/json'
@@ -243,22 +245,21 @@ const submitReviewForm = (event) => {
 }
 
 const editOrDeleteReview = (event) => {
-    if(event.target.matches("#edit-button")) {
+    if (event.target.matches("#edit-button")) {
         addReviewDiv.style.display = "none"
         editReviewDiv.style.display = "block"
         reviewId = parseInt(event.target.dataset.id)
-        fetch(`http://localhost:3000/reviews/${reviewId}`)
-        .then(r => r.json())
-        .then(reviewObject => {
-            editReviewForm.title.value = reviewObject.title
-            editReviewForm.rating.value = reviewObject.rating
-            editReviewForm.review.value = reviewObject.comment
-            editReviewForm.recommend.value = reviewObject.recommend
-        })
-
+        fetch(`${url}/reviews/${reviewId}`)
+            .then(r => r.json())
+            .then(reviewObject => {
+                editReviewForm.title.value = reviewObject.title
+                editReviewForm.rating.value = reviewObject.rating
+                editReviewForm.review.value = reviewObject.comment
+                editReviewForm.recommend.value = reviewObject.recommend
+            })
     } else if (event.target.matches("#delete-button")) {
         const id = parseInt(event.target.dataset.id)
-        fetch(`http://localhost:3000/reviews/${id}`, {
+        fetch(`${url}/reviews/${id}`, {
             method: "DELETE",
             headers: {
                 'content-type': 'application/json'
