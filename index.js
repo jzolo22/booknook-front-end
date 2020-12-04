@@ -288,13 +288,9 @@ reviewBox.addEventListener("click", event => {
         button.forEach(button => {
             button.remove()
         })
-        // button.remove()
         reviewDiv.remove()
-        
     }
 })
-
-
 
 // ------------Initialize------------------------- //
 
