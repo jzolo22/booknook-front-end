@@ -240,6 +240,13 @@ const submitEditBookForm = event => {
             .then(bookObject => {
                 bookDiv.innerHTML = ""
                 renderBookInfoDiv(bookObject, bookDiv)
+                bookDetail.innerHTML = ""
+                bookDetail.innerHTML = `
+                <img src=${bookObject.image_url}>
+                <h3>${bookObject.title}</h3>
+                <h5>${bookObject.author}</h5>
+                <h5>${bookObject.year}</h5>
+                <p>${bookObject.description}</p>`
             })
 }
 
