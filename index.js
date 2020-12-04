@@ -45,9 +45,10 @@ let reviewId
 
 // ------------Fetch functions------------------------- //
 
+const url = "http://localhost:3000"
 
 function fetchBooks () {
-    fetch("http://localhost:3000/books")
+    fetch(`${url}/books`)
         .then(r => r.json())
         .then(bookArray => {
             const newArray = bookArray.slice(0, 12)
@@ -59,10 +60,9 @@ function fetchBooks () {
 }
 
 function fetchBook(id) {
-    return fetch(`http://localhost:3000/books/${id}`)
+    return fetch(`${url}/books/${id}`)
     .then(r => r.json())
 }
-
 
 // ------------Render functions------------------------- //
 
@@ -151,16 +151,14 @@ const moreDetailsClick = (event) => {
             editReviewDiv.style.display = "none"
         }
         
-        fetch(`http://localhost:3000/books/${editId}`)
-        .then(r => r.json())
-        .then(bookObject => {
-           
-            formFill(bookObject)
-            reviewForm.title.value = bookObject.title
-            reviewForm.dataset.id = bookObject.id
-            reviewBox.innerHTML = ""
-            bookObject.reviews.forEach(review => {
-                renderReview(review)
+        fetchBook(editId)
+            .then(bookObject => {
+                formFill(bookObject)
+                reviewForm.title.value = bookObject.title
+                reviewForm.dataset.id = bookObject.id
+                reviewBox.innerHTML = ""
+                bookObject.reviews.forEach(review => {
+                    renderReview(review)
             })
         })
     } 
@@ -175,7 +173,7 @@ const submitEditReviewForm = (event) => {
         rating: parseInt(editReviewForm.rating.value),
     }
 
-    fetch(`http://localhost:3000/reviews/${reviewId}`, {
+    fetch(`${url}/reviews/${reviewId}`, {
         method: "PATCH", 
         headers: {
             "Content-Type": "application/json"
