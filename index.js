@@ -41,6 +41,8 @@ const reviewBox = document.querySelector("#review-box")
 const editReviewForm = document.querySelector("#edit-review-form")
 const addReviewDiv = document.querySelector("#add-review-div")
 const editReviewDiv = document.querySelector("#edit-review-div")
+const bookDetail = document.querySelector("#book-detail")
+const pageThree = document.querySelector("#page-three")
 let reviewId
 
 // ------------Fetch Functions------------------------- //
@@ -147,19 +149,38 @@ const toggleBookInfoDiv = (event) => {
     }
 }
 
+function getOffset(el) {
+    const rect = el.getBoundingClientRect();
+    return {
+      left: rect.left + window.scrollX,
+      top: rect.top + window.scrollY
+    };
+  }
+
 const moreDetailsClick = (event) => {
     if (event.target.id === "more-details") {
         const editId = parseInt(event.target.parentElement.dataset.id)
-        
-        // if (addReviewDiv.style.display === "none") {
-        //     addReviewDiv.style.display = "block"
-        // }
-        // if(editReviewDiv.style.display === "block") {
-        //     editReviewDiv.style.display = "none"
-        // }
+
+
+        const left = getOffset(pageThree).left
+        const top = getOffset(pageThree).top
+
+        window.scrollTo(left, top)
+
+
         
         fetchBook(editId)
             .then(bookObject => {
+
+                bookDetail.innerHTML = ""
+                bookDetail.innerHTML = `
+                <img src=${bookObject.image_url}>
+                <h3>${bookObject.title}</h3>
+                <h5>${bookObject.author}</h5>
+                <h5>${bookObject.year}</h5>
+                <p>${bookObject.description}</p>`
+
+
                 formFill(bookObject)
                 reviewForm.title.value = bookObject.title
                 reviewForm.dataset.id = bookObject.id

@@ -379,3 +379,15 @@ p:hover, div>img:hover {
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
+#book-detail {
+  text-align: center;
+  overflow: auto;
+  font-size: larger;
+  margin: 30px;
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+#outer-review-box {
+  overflow: auto;
+}
