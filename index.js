@@ -1,4 +1,4 @@
-function initialLoad(){
+
 // ---------------------------Page Scroll--------------------------------- //
 
 const whiteArrow = document.querySelector(".arrow.down")
@@ -11,18 +11,14 @@ const scroll = () => {
 }
 
 const moreBooks = () => {
-    // const pageThree = document.querySelector(".bg2.page-three");
-    // pageThree.scrollIntoView({behavior: "smooth"});
-
-        fetch("http://localhost:3000/books")
-            .then(r => r.json())
-            .then(bookArray => {
-                const newArray = bookArray.slice(0, 12)
-                newArray.forEach(book => {
-                    renderOneBookCover(book)
-                })
+    fetch("http://localhost:3000/books")
+        .then(r => r.json())
+        .then(bookArray => {
+            const newArray = bookArray.slice(0, 12)
+            newArray.forEach(book => {
+                renderOneBookCover(book)
             })
-    
+        })
 }
 
 whiteArrow.addEventListener("click", scroll)
@@ -302,4 +298,4 @@ reviewBox.addEventListener("click", event => {
 
 // ------------Initialize------------------------- //
 
-fetchBooks()}
+fetchBooks()
