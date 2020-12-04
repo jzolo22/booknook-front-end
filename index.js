@@ -1,3 +1,4 @@
+
 // ---------------------------Page Scroll--------------------------------- //
 
 const whiteArrow = document.querySelector(".arrow.down")
@@ -10,18 +11,14 @@ const scroll = () => {
 }
 
 const moreBooks = () => {
-    // const pageThree = document.querySelector(".bg2.page-three");
-    // pageThree.scrollIntoView({behavior: "smooth"});
-
-        fetch("http://localhost:3000/books")
-            .then(r => r.json())
-            .then(bookArray => {
-                const newArray = bookArray.slice(0, 12)
-                newArray.forEach(book => {
-                    renderOneBookCover(book)
-                })
+    fetch(`${url}/books`)
+        .then(r => r.json())
+        .then(bookArray => {
+            const newArray = bookArray.slice(0, 12)
+            newArray.forEach(book => {
+                renderOneBookCover(book)
             })
-    
+        })
 }
 
 whiteArrow.addEventListener("click", scroll)
@@ -46,18 +43,12 @@ const addReviewDiv = document.querySelector("#add-review-div")
 const editReviewDiv = document.querySelector("#edit-review-div")
 let reviewId
 
-// ------------Fetch functions------------------------- //
+// ------------Fetch Functions------------------------- //
 
-
-// fetch("http://localhost:3000/books/1")
-// .then(response => response.json())
-// .then(book => {
-//     renderOneBookCover(book)
-//     console.log(book.image_url)
-// })
+const url = "http://localhost:3000"
 
 function fetchBooks () {
-    fetch("http://localhost:3000/books")
+    fetch(`${url}/books`)
         .then(r => r.json())
         .then(bookArray => {
             const newArray = bookArray.slice(0, 12)
@@ -68,9 +59,12 @@ function fetchBooks () {
         })
 }
 
+function fetchBook(id) {
+    return fetch(`${url}/books/${id}`)
+        .then(r => r.json())
+}
 
-// ------------Render functions------------------------- //
-
+// ------------Render Functions------------------------- //
 
 function renderOneBookCover(book) {
     const newBookDiv = document.createElement("div")
@@ -88,13 +82,11 @@ function renderOneBookCover(book) {
 function renderBookInfoDiv(book, container) {
     const bookDiv = document.createElement("div")
     bookDiv.dataset.id = book.id
-
     bookDiv.innerHTML = `
         <p>${book.title}</p>
         <p>by ${book.author}</p>
         <a href="#add-book-form" id="more-details">more details</a>
     `
-
     container.append(bookDiv)
 }
 
@@ -106,27 +98,30 @@ function formFill(bookObject) {
     editBookForm.year.value = bookObject.year 
     editBookForm.description.value = bookObject.description
     editBookForm.dataset.id = bookObject.id
-    
 }
 
 
 function renderReview(review) {
     const reviewDiv = document.createElement("div")
     reviewDiv.dataset.id = review.id
+
     const editButton = document.createElement("button")
+    editButton.dataset.id = review.id
+    editButton.id = "edit-button"
+    editButton.textContent = "edit"
+     editButton.classList.add("trigger")
+
     const deleteButton = document.createElement("button")
     deleteButton.dataset.id = review.id
     deleteButton.id = "delete-button"
-    editButton.id = "edit-button"
-    editButton.dataset.id = review.id
-    editButton.classList.add("trigger")
-    editButton.textContent = "edit"
+
+   
+
     deleteButton.textContent = "delete"
 
     reviewDiv.textContent =`"${review.comment}" -${review.username}`
 
     reviewBox.append(reviewDiv, editButton, deleteButton)
-
 }
 
 function renderUpdatedReview(newReview) {
@@ -134,26 +129,26 @@ function renderUpdatedReview(newReview) {
     reviewDiv.textContent =`"${newReview.comment}" -${newReview.username}`
 }
 
-// ------------Event Listener------------------------- //
-bookContainer.addEventListener("click", event => {
+// ------------Event Handler Functions------------------------- //
+
+
+const toggleBookInfoDiv = (event) => {
     if (event.target.tagName === "IMG") {
         const id = event.target.dataset.id 
         const flexItem = event.target.closest("div")
 
         if (flexItem.childElementCount === 1) {
-            fetch(`http://localhost:3000/books/${id}`)
-                .then(r => r.json())
+            fetchBook(id)
                 .then(bookObj => renderBookInfoDiv(bookObj, flexItem))
         } else {
             const div = flexItem.querySelector("div")
             flexItem.removeChild(div)
         }
     }
-})
+}
 
-document.body.addEventListener("click", event => {
+const moreDetailsClick = (event) => {
     if (event.target.id === "more-details") {
-        // const addReviewForm = document.querySelector("#add-review-form")
         const editId = parseInt(event.target.parentElement.dataset.id)
         
         // if (addReviewDiv.style.display === "none") {
@@ -163,32 +158,29 @@ document.body.addEventListener("click", event => {
         //     editReviewDiv.style.display = "none"
         // }
         
-        fetch(`http://localhost:3000/books/${editId}`)
-        .then(r => r.json())
-        .then(bookObject => {
-           
-            formFill(bookObject)
-            reviewForm.title.value = bookObject.title
-            reviewForm.dataset.id = bookObject.id
-            reviewBox.innerHTML = ""
-            bookObject.reviews.forEach(review => {
-                renderReview(review)
+        fetchBook(editId)
+            .then(bookObject => {
+                formFill(bookObject)
+                reviewForm.title.value = bookObject.title
+                reviewForm.dataset.id = bookObject.id
+                reviewBox.innerHTML = ""
+                bookObject.reviews.forEach(review => {
+                    renderReview(review)
             })
         })
-    }
-    
-})
+    } 
+}
 
-editReviewForm.addEventListener("submit", event => {
+const submitEditReviewForm = (event) => {
     event.preventDefault()
     
     const editedReviewObject = {
-        comment: event.target.review.value,
-        recommend: event.target.recommend.value,
-        rating: parseInt(event.target.rating.value),
+        comment: editReviewForm.review.value,
+        recommend: editReviewForm.recommend.value,
+        rating: parseInt(editReviewForm.rating.value),
     }
 
-    fetch(`http://localhost:3000/reviews/${reviewId}`, {
+    fetch(`${url}/reviews/${reviewId}`, {
         method: "PATCH", 
         headers: {
             "Content-Type": "application/json"
@@ -199,13 +191,15 @@ editReviewForm.addEventListener("submit", event => {
         .then(updatedReview => {
             renderUpdatedReview(updatedReview)
         })
-})
+}
 
-editForm.addEventListener("submit", event => {
+const submitEditBookForm = event => {
     event.preventDefault()
+
     const editFormId = parseInt(event.target.dataset.id)
     const bookDiv = document.querySelector(`div[data-id="${editFormId}"]`)
-    const editFormObject = {
+
+    const editedBook = {
         "title": editBookForm.title.value,
         "author": editBookForm.author.value,
         "genre": editBookForm.genre.value,
@@ -214,26 +208,24 @@ editForm.addEventListener("submit", event => {
         "description": editBookForm.description.value
     }
     
-    fetch(`http://localhost:3000/books/${editFormId}`, {
+    fetch(`${url}/books/${editFormId}`, {
         method: "PATCH",
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify(editFormObject)
+        body: JSON.stringify(editedBook)
     })
-    .then(r => r.json())
-    .then(bookObject => {
-        bookDiv.innerHTML = ""
-        renderBookInfoDiv(bookObject, bookDiv)
+            .then(r => r.json())
+            .then(bookObject => {
+                bookDiv.innerHTML = ""
+                renderBookInfoDiv(bookObject, bookDiv)
+            })
+}
 
-    })
- 
-})
-
-reviewForm.addEventListener("submit", event => {
+const submitReviewForm = (event) => {
     event.preventDefault()
+
     const reviewBookId = parseInt(reviewForm.dataset.id)
-    console.log("click")
     const reviewObject = {
         comment: reviewForm.review.value,
         recommend: reviewForm.recommend.value,
@@ -241,44 +233,39 @@ reviewForm.addEventListener("submit", event => {
         user_id: userId,
         book_id: reviewBookId
     }
-
     
-
-    fetch("http://localhost:3000/reviews", {
+    fetch(`${url}/reviews`, {
         method: "POST",
         headers: {
             'content-type': 'application/json'
         },
         body: JSON.stringify(reviewObject)
     })
-    .then(r => r.json())
-    .then(review => {
-        // reviewBox.innerHTML = ""
-        renderReview(review)
-        // console.log(review)
-    } )
+        .then(r => r.json())
+        .then(review => {
+            renderReview(review)
+        } )
 
     event.target.reset()
-})
+}
 
-reviewBox.addEventListener("click", event => {
-    if(event.target.matches("#edit-button")) {
-        console.log("clicked") 
-        // addReviewDiv.style.display = "none"
-        // editReviewDiv.style.display = "block"
+
+const editOrDeleteReview = (event) => {
+    if (event.target.matches("#edit-button")) {
+//         addReviewDiv.style.display = "none"
+//         editReviewDiv.style.display = "block"
         reviewId = parseInt(event.target.dataset.id)
-        fetch(`http://localhost:3000/reviews/${reviewId}`)
-        .then(r => r.json())
-        .then(reviewObject => {
-            editReviewForm.title.value = reviewObject.title
-            editReviewForm.rating.value = reviewObject.rating
-            editReviewForm.review.value = reviewObject.comment
-            editReviewForm.recommend.value = reviewObject.recommend
-        })
-
-    } else if(event.target.matches("#delete-button")) {
+        fetch(`${url}/reviews/${reviewId}`)
+            .then(r => r.json())
+            .then(reviewObject => {
+                editReviewForm.title.value = reviewObject.title
+                editReviewForm.rating.value = reviewObject.rating
+                editReviewForm.review.value = reviewObject.comment
+                editReviewForm.recommend.value = reviewObject.recommend
+            })
+    } else if (event.target.matches("#delete-button")) {
         const id = parseInt(event.target.dataset.id)
-        fetch(`http://localhost:3000/reviews/${id}`, {
+        fetch(`${url}/reviews/${id}`, {
             method: "DELETE",
             headers: {
                 'content-type': 'application/json'
@@ -293,13 +280,22 @@ reviewBox.addEventListener("click", event => {
         button.forEach(button => {
             button.remove()
         })
-        // button.remove()
         reviewDiv.remove()
-        
     }
-})
+}
 
+// ------------Event Listener------------------------- //
+bookContainer.addEventListener("click", toggleBookInfoDiv)
 
+document.body.addEventListener("click", moreDetailsClick)
+
+editReviewForm.addEventListener("submit", submitEditReviewForm)
+
+editForm.addEventListener("submit", submitEditBookForm)
+
+reviewForm.addEventListener("submit", submitReviewForm)
+
+reviewBox.addEventListener("click", editOrDeleteReview)
 
 // ------------Initialize------------------------- //
 

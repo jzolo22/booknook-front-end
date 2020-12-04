@@ -287,7 +287,7 @@ p:hover, div>img:hover {
   pointer-events: none;
   position: absolute;
   z-index: -1;
-  content: '';
+  content: ' ';
   top: 100%;
   left: 5%;
   height: 10px;
@@ -378,3 +378,4 @@ p:hover, div>img:hover {
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
+

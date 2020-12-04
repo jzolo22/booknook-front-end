@@ -42,7 +42,7 @@ function submitName(event) {
 
     heroText.style.display = "block"
     name = nameForm.name.value
-    h2.textContent = `come on in, ${name}`
+    h2.textContent = `welcome, ${name.toLowerCase()}`
 
     newUser = {
         username: name
@@ -53,7 +53,3 @@ function submitName(event) {
     nameForm.reset()
 }
 
-// function firstPageClear() {
-//         bgImg.style.display = "none"
-
-// }
