@@ -11,7 +11,7 @@ window.onbeforeunload = function () {
     window.scrollTo(0, 0);
   }
 
-onbeforeunload()
+window.onbeforeunload()
 
 nameForm.addEventListener("submit", submitName)
 
@@ -34,10 +34,11 @@ function submitName(event) {
     event.preventDefault()
 
     loginForm.style.display = "none"
-    bgImg.style.display = "none"
 
     const pageOne = document.querySelector(".bg1");
-    pageOne.scrollIntoView({behavior: "smooth"});
+    if (pageOne.scrollIntoView({behavior: "smooth"})) {
+        bgImg.style.display = "none"
+    }
 
     heroText.style.display = "block"
     name = nameForm.name.value
@@ -51,3 +52,8 @@ function submitName(event) {
 
     nameForm.reset()
 }
+
+// function firstPageClear() {
+//         bgImg.style.display = "none"
+
+// }
