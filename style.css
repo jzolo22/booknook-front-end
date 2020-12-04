@@ -256,10 +256,14 @@ p:hover, div>img:hover {
 }
 
 #forms-container {
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   align-items: center;
-  grid-template-rows: auto;
+  grid-template-rows: auto; */
+  position: absolute;
+  bottom: 0px;
+  margin-left: 39%;
+  margin-bottom: 20px;
 }
 
 .form-item {
@@ -307,5 +311,71 @@ p:hover, div>img:hover {
   -webkit-transform: translateY(8px);
   transform: translateY(8px);
   /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+
+
+.form-popup {
+  display: none;
+  position: sticky;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: sticky;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* modal button */
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 24rem;
+  border-radius: 0.5rem;
+}
+.close-button {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+.close-button:hover {
+  background-color: darkgray;
+}
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 

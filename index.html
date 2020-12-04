@@ -11,6 +11,7 @@
     <script defer src="index.js"></script>
     <script defer src="name.js"></script>
     <script defer src="add-form.js"></script>
+    <script defer src="popupforms.js"></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300&display=swap" rel="stylesheet">
 
@@ -60,76 +61,9 @@
 
         <h2 class="header">add/edit a book:</h2>
 
+        <div>Testing</div>
+
         <div id="forms-container">
-            <div class="form-item">
-                <form autocomplete="off" id="add-book-form">
-                    <h3>add book</h3>
-                    <label for="title">title</label><br>
-                    <input id= "add-title" name="title" type="text" placeholder="title"><br><br>
-                    <label for="author">author</label><br>
-                    <input id= "add-author" name="author" type="text", placeholder="author"><br><br>
-                    <label for="genre">genre</label><br>
-                    <input id= "add-genre" name="genre" type="text", placeholder="genre"><br><br>
-                    <label for="image_url">link to image</label><br>
-                    <input id= "add-image" name="image_url" type="text", placeholder="image"><br><br>
-                    <label for="year">year</label><br>
-                    <input id= "add-year" name="year" type="text", placeholder="year"><br><br>
-                    <label for="description">description</label><br>
-                    <input id= "add-description" name="description" type="text", placeholder="description"><br><br>
-                    <input id="add-submit" type="submit" placeholder="submit">
-                </form>
-            </div>
-
-            <div style="display: none" class="form-item"  id="edit-review-div">
-                <form autocomplete="off" id="edit-review-form">
-                    <h3>edit review</h3>
-                    <label for="title">title</label><br>
-                    <input id= "add-title" name="title" type="text" placeholder="title"><br><br>
-                    <label>rating:</label><br>
-                    <select name="rating" id="rating">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select><br><br>
-            
-                    <label for="review">review</label><br>
-                    <textarea id= "add-review" name="review" rows="17" cols="40" type="textarea", placeholder="review"></textarea><br><br>
-                    <label>recommend?</label><br>
-                    <input type="radio" id="true" name="recommend" value="true">
-                    <label for="true">yes</label>
-                    <input type="radio" id="false" name="recommend" value="false">
-                    <label for="false">no</label><br><br>
-                    <input id="review-submit" type="submit" placeholder="submit">
-                </form>
-            </div>
-
-            <div class="form-item"  id="add-review-div">
-                <form autocomplete="off" id="add-review-form">
-                    <h3>write a review</h3>
-                    <label for="title">title</label><br>
-                    <input id= "add-title" name="title" type="text" placeholder="title"><br><br>
-                    <label>rating:</label><br>
-                    <select name="rating" id="rating">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select><br><br>
-            
-                    <label for="review">review</label><br>
-                    <textarea id= "add-review" name="review" rows="17" cols="40" type="textarea", placeholder="review"></textarea><br><br>
-                    <label>recommend?</label><br>
-                    <input type="radio" id="true" name="recommend" value="true">
-                    <label for="true">yes</label>
-                    <input type="radio" id="false" name="recommend" value="false">
-                    <label for="false">no</label><br><br>
-                    <input id="review-submit" type="submit" placeholder="submit">
-                </form>
-            </div>
-
             <div class="form-item" id="outer-review-box">
                 <h3>reviews:</h3>
                 <div id="review-box">
@@ -138,24 +72,114 @@
 
             </div>
 
-            <div class="form-item">
-                <form id="edit-book-form">
-                    <h3>edit book</h3>
-                    <label for="title">title</label><br>
-                    <input name="title" type="text", placeholder="title"><br><br>
-                    <label for="author">author</label><br>
-                    <input name="author" type="text", placeholder="author"><br><br>
-                    <label for="genre">genre</label><br>
-                    <input name="genre" type="text", placeholder="genre"><br><br>
-                    <label for="image_url">link to image</label><br>
-                    <input name="image_url" type="text", placeholder="image"><br><br>
-                    <label for="year">year</label><br>
-                    <input name="year" type="text", placeholder="year"><br><br>
-                    <label for="description">description</label><br>
-                    <textarea name="description" rows="10" cols="20" type="textarea", placeholder="description"></textarea><br><br>
-                    <input id="edit-submit" type="submit" placeholder="submit">
+            <button class="trigger" id="review-open-btn">write a review</button>
+            <div class="modal" id="review-modal">
+                    <div class="form-item" >
+                        <form class="modal-content" autocomplete="off" id="add-review-form">
+                            <span class="close-button" id="review-close-button">&times;</span>
+                            <h3>write a review</h3>
+                            <label for="title">title</label><br>
+                            <input id= "add-title" name="title" type="text" placeholder="title"><br><br>
+                            <label>rating:</label><br>
+                            <select name="rating" id="rating">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select><br><br>
+            
+                    <label for="review">review</label><br>
+                    <textarea id= "add-review" name="review" rows="17" cols="40" type="textarea", placeholder="review"></textarea><br><br>
+                    <label>recommend?</label><br>
+                    <input type="radio" id="true" name="recommend" value="true">
+                    <label for="true">yes</label>
+                    <input type="radio" id="false" name="recommend" value="false">
+                    <label for="false">no</label><br><br>
+                    <input id="review-submit" type="submit" placeholder="submit">
                 </form>
+                </div>
             </div>
+
+
+            <button class="trigger" id="add-open-btn">add a book</button>
+            <div class="modal" id="add-book-modal">
+                    <div class="form-item" >
+                        <form class="modal-content" autocomplete="off" id="add-book-form">
+                            <span class="close-button" id="add-close-button">&times;</span>
+                            <h3>add book</h3>
+                            <label for="title">title</label><br>
+                            <input id= "add-title" name="title" type="text" placeholder="title"><br><br>
+                            <label for="author">author</label><br>
+                            <input id= "add-author" name="author" type="text", placeholder="author"><br><br>
+                            <label for="genre">genre</label><br>
+                            <input id= "add-genre" name="genre" type="text", placeholder="genre"><br><br>
+                            <label for="image_url">link to image</label><br>
+                            <input id= "add-image" name="image_url" type="text", placeholder="image"><br><br>
+                            <label for="year">year</label><br>
+                            <input id= "add-year" name="year" type="text", placeholder="year"><br><br>
+                            <label for="description">description</label><br>
+                            <input id= "add-description" name="description" type="text", placeholder="description"><br><br>
+                            <input id="add-submit" type="submit" placeholder="submit">
+                        </form>
+                </div>
+            </div>
+
+            <button class="trigger" id="edit-book-open-btn">edit a book</button>
+            <div class="modal" id="edit-book-modal">
+                    <div class="form-item" >
+                        <form class="modal-content" autocomplete="off" id="edit-book-form">
+                            <span class="close-button" id="edit-close-button">&times;</span>
+                            <h3>edit book</h3>
+                            <label for="title">title</label><br>
+                            <input name="title" type="text", placeholder="title"><br><br>
+                            <label for="author">author</label><br>
+                            <input name="author" type="text", placeholder="author"><br><br>
+                            <label for="genre">genre</label><br>
+                            <input name="genre" type="text", placeholder="genre"><br><br>
+                            <label for="image_url">link to image</label><br>
+                            <input name="image_url" type="text", placeholder="image"><br><br>
+                            <label for="year">year</label><br>
+                            <input name="year" type="text", placeholder="year"><br><br>
+                            <label for="description">description</label><br>
+                            <textarea name="description" rows="10" cols="20" type="textarea", placeholder="description"></textarea><br><br>
+                            <input id="edit-submit" type="submit" placeholder="submit">
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="modal" id="edit-review-modal">
+                <div class="form-item"  id="edit-review-div">
+                    <form autocomplete="off" class="modal-content" id="edit-review-form">
+                        <span class="close-button" id="review-close-button">&times;</span>
+                        <h3>edit review</h3>
+                        <label for="title">title</label><br>
+                        <input id= "add-title" name="title" type="text" placeholder="title"><br><br>
+                        <label>rating:</label><br>
+                        <select name="rating" id="rating">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select><br><br>
+            
+                        <label for="review">review</label><br>
+                        <textarea id= "add-review" name="review" rows="17" cols="40" type="textarea", placeholder="review"></textarea><br><br>
+                        <label>recommend?</label><br>
+                        <input type="radio" id="true" name="recommend" value="true">
+                        <label for="true">yes</label>
+                        <input type="radio" id="false" name="recommend" value="false">
+                        <label for="false">no</label><br><br>
+                        <input id="review-submit" type="submit" placeholder="submit">
+                    </form>
+                </div>
+            </div>
+           
+
+            
+
         </div>
 
     </div>
