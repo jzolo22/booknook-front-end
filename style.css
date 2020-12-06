@@ -260,7 +260,7 @@ p:hover, div>img:hover {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   align-items: center;
   grid-template-rows: auto; */
-  position: absolute;
+  position: inherit;
   bottom: 0px;
   margin-left: 39%;
   margin-bottom: 20px;

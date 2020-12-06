@@ -167,11 +167,9 @@ const moreDetailsClick = (event) => {
 
         window.scrollTo(left, top)
 
-
-        
         fetchBook(editId)
             .then(bookObject => {
-
+                bookDetail.style.overflow = "auto"
                 bookDetail.innerHTML = ""
                 bookDetail.innerHTML = `
                 <img src=${bookObject.image_url}>
