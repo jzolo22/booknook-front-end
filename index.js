@@ -79,38 +79,38 @@ function fetchBook(id) {
 
 // ------------Render Functions------------------------- //
 
-function renderOneBookCover(book) {
+function renderOneBookCover({image_url, title, id}) {
     const newBookDiv = document.createElement("div")
     newBookDiv.className = "flex-item"
     const image = document.createElement("img")
     image.classList.add("hvr-float-shadow")
-    image.src = book.image_url
-    image.alt = book.title
-    image.dataset.id = book.id
+    image.src = image_url
+    image.alt = title
+    image.dataset.id = id
 
     newBookDiv.append(image)
     bookContainer.append(newBookDiv)
 }
 
-function renderBookInfoDiv(book, container) {
+function renderBookInfoDiv({id, title, author}, container) {
     const bookDiv = document.createElement("div")
-    bookDiv.dataset.id = book.id
+    bookDiv.dataset.id = id
     bookDiv.innerHTML = `
-        <p>${book.title}</p>
-        <p>by ${book.author}</p>
+        <p>${title}</p>
+        <p>by ${author}</p>
         <a href="#add-book-form" id="more-details">more details</a>
     `
     container.append(bookDiv)
 }
 
-function formFill(bookObject) {
-    editBookForm.title.value = bookObject.title
-    editBookForm.author.value = bookObject.author
-    editBookForm.genre.value = bookObject.genre
-    editBookForm.image_url.value = bookObject.image_url
-    editBookForm.year.value = bookObject.year 
-    editBookForm.description.value = bookObject.description
-    editBookForm.dataset.id = bookObject.id
+function formFill({title, author, genre, image_url, year, description, id}) {
+    editBookForm.title.value = title
+    editBookForm.author.value = author
+    editBookForm.genre.value = genre
+    editBookForm.image_url.value = image_url
+    editBookForm.year.value = year 
+    editBookForm.description.value = description
+    editBookForm.dataset.id = id
 }
 
 
@@ -135,23 +135,21 @@ function renderReview(review) {
     }
 
     deleteButton.textContent = "delete"
-
     reviewDiv.textContent =`"${review.comment}" -${review.username}`
-
     reviewBox.append(reviewDiv, editButton, deleteButton)
 }
 
-function renderUpdatedReview(newReview) {
-    const reviewDiv = reviewBox.querySelector(`div[data-id="${newReview.id}"]`)
-    reviewDiv.textContent =`"${newReview.comment}" -${newReview.username}`
+function renderUpdatedReview({id, comment, username}) {
+    const reviewDiv = reviewBox.querySelector(`div[data-id="${id}"]`)
+    reviewDiv.textContent =`"${comment}" -${username}`
 }
 
 // ------------Event Handler Functions------------------------- //
 
-const toggleBookInfoDiv = (event) => {
-    if (event.target.tagName === "IMG") {
-        const id = event.target.dataset.id 
-        const flexItem = event.target.closest("div")
+const toggleBookInfoDiv = ({target: element}) => {
+    if (element.tagName === "IMG") {
+        const id = element.dataset.id 
+        const flexItem = element.closest("div")
 
         if (flexItem.childElementCount === 1) {
             fetchBook(id)
@@ -174,13 +172,6 @@ function getOffset(el) {
 const moreDetailsClick = (event) => {
     if (event.target.id === "more-details") {
         const editId = parseInt(event.target.parentElement.dataset.id)
-
-
-
-        // const left = getOffset(pageThree).left
-        // const top = getOffset(pageThree).top
-        
-        // window.scrollTo(left, top)
 
         pageThree.scrollIntoView()
 
