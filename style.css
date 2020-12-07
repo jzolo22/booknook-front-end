@@ -420,3 +420,7 @@ p:hover, div>img:hover {
 #sort-dropdown {
   padding-left: 20px;
 }
+
+div#review-box div {
+  padding-top: 10px;
+}
