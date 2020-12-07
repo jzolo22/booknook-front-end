@@ -262,8 +262,8 @@ p:hover, div>img:hover {
   grid-template-rows: auto; */
   position: inherit;
   bottom: 0px;
-  margin-left: 39%;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .form-item {
