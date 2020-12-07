@@ -392,3 +392,10 @@ p:hover, div>img:hover {
 #outer-review-box {
   overflow: auto;
 }
+
+.black-button {
+  background-color:#162708bd;
+  color: white;
+  padding: 8px 48px;
+  font-size: 14px;
+}
