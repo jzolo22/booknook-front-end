@@ -112,10 +112,16 @@ function renderReview(review) {
     editButton.id = "edit-button"
     editButton.textContent = "edit"
     editButton.classList.add("trigger")
+    if (name != review.username) {
+        editButton.disabled = true
+    }
 
     const deleteButton = document.createElement("button")
     deleteButton.dataset.id = review.id
     deleteButton.id = "delete-button"
+    if (name != review.username) {
+        deleteButton.disabled = true
+    }
 
     deleteButton.textContent = "delete"
 
