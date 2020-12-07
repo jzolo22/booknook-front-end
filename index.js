@@ -335,6 +335,7 @@ const sortByTitle = event => {
             allBooksArray.forEach(book => {
                 renderOneBookCover(book)
             })
+            break
 
         case "author":
             allBooksArray.sort(function (a, b) {
@@ -351,6 +352,19 @@ const sortByTitle = event => {
             allBooksArray.forEach(book => {
                 renderOneBookCover(book)
             })
+            break
+
+        case "num-reviews":
+            allBooksArray.sort(function (a, b) {
+                return b.reviews.length - a.reviews.length
+            })
+
+            console.log(allBooksArray)
+            bookContainer.innerHTML = ""
+            allBooksArray.forEach(book => {
+                renderOneBookCover(book)
+            })
+            break
     } 
 }
 
