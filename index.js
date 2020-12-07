@@ -321,23 +321,23 @@ const sortByTitle = event => {
                 const titleB = b.title 
                 return titleA.localeCompare(titleB)
             })
-        
-            bookContainer.innerHTML = ""
-            allBooksArray.forEach(book => {
-                renderOneBookCover(book)
-            })
-
-        case "author":
-            allBooksArray.sort(function (a, b) {
-                const authorA = a.author.split(" ")[1] 
-                const authorB = b.author.split(" ")[1] 
-                return authorA.localeCompare(authorB)
-            })
             console.log(allBooksArray)
             bookContainer.innerHTML = ""
             allBooksArray.forEach(book => {
                 renderOneBookCover(book)
             })
+
+        // case "author":
+        //     allBooksArray.sort(function (a, b) {
+        //         const authorA = a.author.split(" ")[1] 
+        //         const authorB = b.author.split(" ")[1] 
+        //         return authorA.localeCompare(authorB)
+        //     })
+        //     console.log(allBooksArray)
+        //     bookContainer.innerHTML = ""
+        //     allBooksArray.forEach(book => {
+        //         renderOneBookCover(book)
+        //     })
     } 
 }
 
