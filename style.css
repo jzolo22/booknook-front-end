@@ -228,7 +228,7 @@ main {
 }
 
 p {
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -264,6 +264,7 @@ p:hover, div>img:hover {
   bottom: 0px;
   margin-bottom: 20px;
   text-align: center;
+  margin-top: 20px;
 }
 
 .form-item {
@@ -390,4 +391,11 @@ p:hover, div>img:hover {
 
 #outer-review-box {
   overflow: auto;
+}
+
+.black-button {
+  background-color:#162708bd;
+  color: white;
+  padding: 8px 48px;
+  font-size: 14px;
 }
