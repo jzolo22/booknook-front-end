@@ -160,10 +160,13 @@ const moreDetailsClick = (event) => {
         const editId = parseInt(event.target.parentElement.dataset.id)
 
 
-        const left = getOffset(pageThree).left
-        const top = getOffset(pageThree).top
 
-        window.scrollTo(left, top)
+        // const left = getOffset(pageThree).left
+        // const top = getOffset(pageThree).top
+        
+        // window.scrollTo(left, top)
+
+        pageThree.scrollIntoView()
 
         fetchBook(editId)
             .then(bookObject => {
@@ -172,8 +175,8 @@ const moreDetailsClick = (event) => {
                 bookDetail.innerHTML = `
                 <img src=${bookObject.image_url}>
                 <h3>${bookObject.title}</h3>
-                <h5>${bookObject.author}</h5>
-                <h5>${bookObject.year}</h5>
+                <h5>by ${bookObject.author}</h5>
+                <h5>published: ${bookObject.year}</h5>
                 <p>${bookObject.description}</p>`
 
 
