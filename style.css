@@ -228,7 +228,7 @@ main {
 }
 
 p {
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -264,6 +264,7 @@ p:hover, div>img:hover {
   bottom: 0px;
   margin-bottom: 20px;
   text-align: center;
+  margin-top: 20px;
 }
 
 .form-item {
