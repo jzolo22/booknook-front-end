@@ -429,8 +429,13 @@ p:hover, div>img:hover {
   /* position:relative; */
   /* top:50%; 
   left:50%; */
+  
   background-color:#162708bd;
   color: white;
   /* padding: 8px 48px; */
   font-size: 14px;
+}
+
+label {
+  padding-left: 20px;
 }
