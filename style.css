@@ -153,6 +153,12 @@ background-size: cover;
 position: relative;
 }
 
+#page-three{
+  position: inherit;
+  bottom: 0;
+  left: 0;
+}
+
 .hero-text {
     text-align: center;
     position: absolute;
@@ -256,17 +262,33 @@ p:hover, div>img:hover {
 }
 
 #forms-container {
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  align-items: center;
-  grid-template-rows: auto; */
-  position: inherit;
-  bottom: 0px;
-  margin-bottom: 20px;
   text-align: center;
+  display: inline-block;
+  position: inherit;
+  padding-bottom: 20px;
+  /* width: 100%; */
+  top: 20px;
+  /* top: 50%; */
+  left: 50%;
+  /* margin-top: -50px; */
+  margin-left: -100px;
+  /* top: 50%; */
+  /* left: 50%; */
+  /* text-align: center;
+  position: absolute;
+  bottom: 0px; */
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+  /* align-items: center; */
+  /* grid-template-rows: auto; */
+  /* position: absolute; */
+  /* bottom: 0px; */
+  /* margin-left: 39%; */
+  /* margin-bottom: 20px; */
 }
 
 .form-item {
+  /* position: inherit; */
   text-align: center;
   justify-content: center;
 }
@@ -382,12 +404,28 @@ p:hover, div>img:hover {
 #book-detail {
   text-align: center;
   overflow: auto;
+  position: inherit;
   font-size: larger;
   margin: 30px;
   margin-left: 250px;
   margin-right: 250px;
 }
 
+#book-detail p{
+  padding-top: 5px;
+  font-size: 18px;
+}
+
 #outer-review-box {
   overflow: auto;
+}
+
+#review-open-btn, #add-open-btn, #edit-book-open-btn{
+  /* width:100px;  */
+  display:inline-block;
+
+  bottom: 0px;
+  /* position:relative; */
+  /* top:50%; 
+  left:50%; */
 }
