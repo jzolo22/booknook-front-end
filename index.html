@@ -47,7 +47,16 @@
     <div class="bg2">
         
             <h2 class="header">our favorites this week:</h2>
-            <button id="title-sort">sort by title</button>
+            <!-- <button id="title-sort">sort by title</button> -->
+
+            <label for="sorting">sort books by:</label>
+                <select name="sort" id="sort">
+                <option value="-">-</option>
+                <option value="title">title</option>
+                <option value="author">author</option>
+                <option value="release-date">release date</option>
+                <option value="rating">rating</option>
+                </select>
                 
             <div class="flex-container" id="book-container">
                 
