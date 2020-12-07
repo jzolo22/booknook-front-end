@@ -16,16 +16,12 @@ const moreBooks = () => {
         .then(bookArray => {
             const newArray = bookArray.slice(0, 12)
             newArray.forEach(book => {
-                if(allBookIds.includes(book.id)){
-                    console.log("already have this book!")
-                }
-                else if (!allBookIds.includes(book.id)){
+                if (!allBookIds.includes(book.id)){
                     renderOneBookCover(book)
                     allBooksArray.push(book)
                     allBookIds.push(book.id)
                 }
             })
-            console.log(allBookIds)
         })
 }
 
@@ -74,7 +70,6 @@ function fetchBooks () {
                 
             })
         })
-        console.log(allBookIds)
 }
 
 function fetchBook(id) {
@@ -320,7 +315,6 @@ const editOrDeleteReview = (event) => {
             }
         })
         .then(r => r.json())
-        .then(console.log)
 
         const reviewDiv = document.querySelector(`div[data-id="${id}"]`)
         const button = document.querySelectorAll(`button[data-id="${id}"]`)
@@ -341,7 +335,6 @@ const sortByTitle = event => {
                 const titleB = b.title 
                 return titleA.localeCompare(titleB)
             })
-            console.log(allBooksArray)
             bookContainer.innerHTML = ""
             allBooksArray.forEach(book => {
                 renderOneBookCover(book)
@@ -358,7 +351,6 @@ const sortByTitle = event => {
                 const authorB = lastNameB 
                 return authorA.localeCompare(authorB)
             })
-            console.log(allBooksArray)
             bookContainer.innerHTML = ""
             allBooksArray.forEach(book => {
                 renderOneBookCover(book)
@@ -370,19 +362,32 @@ const sortByTitle = event => {
                 return b.reviews.length - a.reviews.length
             })
 
-            console.log(allBooksArray)
             bookContainer.innerHTML = ""
             allBooksArray.forEach(book => {
                 renderOneBookCover(book)
             })
             break
 
-        case "release-date":
+        case "release-date-new":
             allBooksArray.sort(function (a, b) {
-                return b.year - a.year
+                const dateA = new Date (a.year)
+                const dateB = new Date (b.year)
+                    return dateB - dateA
             })
 
-            console.log(allBooksArray)
+            bookContainer.innerHTML = ""
+            allBooksArray.forEach(book => {
+                renderOneBookCover(book)
+            })
+            break
+
+        case "release-date-old":
+            allBooksArray.sort(function (a, b) {
+                const dateA = new Date (a.year)
+                const dateB = new Date (b.year)
+                    return dateA - dateB
+            })
+
             bookContainer.innerHTML = ""
             allBooksArray.forEach(book => {
                 renderOneBookCover(book)
