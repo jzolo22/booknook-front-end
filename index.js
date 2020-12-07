@@ -346,18 +346,36 @@ const sortByTitle = event => {
             allBooksArray.forEach(book => {
                 renderOneBookCover(book)
             })
+            break
 
-        // case "author":
-        //     allBooksArray.sort(function (a, b) {
-        //         const authorA = a.author.split(" ")[1] 
-        //         const authorB = b.author.split(" ")[1] 
-        //         return authorA.localeCompare(authorB)
-        //     })
-        //     console.log(allBooksArray)
-        //     bookContainer.innerHTML = ""
-        //     allBooksArray.forEach(book => {
-        //         renderOneBookCover(book)
-        //     })
+        case "author":
+            allBooksArray.sort(function (a, b) {
+                const nameA = a.author.split(" ")
+                const nameB = b.author.split(" ")
+                const lastNameA = nameA[1]
+                const lastNameB = nameB[1]
+                const authorA =  lastNameA
+                const authorB = lastNameB 
+                return authorA.localeCompare(authorB)
+            })
+            console.log(allBooksArray)
+            bookContainer.innerHTML = ""
+            allBooksArray.forEach(book => {
+                renderOneBookCover(book)
+            })
+            break
+
+        case "num-reviews":
+            allBooksArray.sort(function (a, b) {
+                return b.reviews.length - a.reviews.length
+            })
+
+            console.log(allBooksArray)
+            bookContainer.innerHTML = ""
+            allBooksArray.forEach(book => {
+                renderOneBookCover(book)
+            })
+            break
     } 
 }
 
