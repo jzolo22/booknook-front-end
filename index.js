@@ -17,6 +17,7 @@ const moreBooks = () => {
             const newArray = bookArray.slice(0, 12)
             newArray.forEach(book => {
                 renderOneBookCover(book)
+                allBooksArray.push(book)
             })
         })
 }
@@ -43,20 +44,23 @@ const addReviewDiv = document.querySelector("#add-review-div")
 const editReviewDiv = document.querySelector("#edit-review-div")
 const bookDetail = document.querySelector("#book-detail")
 const pageThree = document.querySelector("#page-three")
+const titleSort = document.querySelector("#title-sort")
 let reviewId
 
 // ------------Fetch Functions------------------------- //
 
 const url = "http://localhost:3000"
+let allBooksArray = []
 
 function fetchBooks () {
     fetch(`${url}/books`)
         .then(r => r.json())
         .then(bookArray => {
-            const newArray = bookArray.slice(0, 12)
+            const firstTwelveArray = bookArray.slice(0, 12)
             bookContainer.innerHTML = ""
-            newArray.forEach(book => {
+            firstTwelveArray.forEach(book => {
                 renderOneBookCover(book)
+                allBooksArray.push(book)
             })
         })
 }
@@ -136,7 +140,6 @@ function renderUpdatedReview(newReview) {
 }
 
 // ------------Event Handler Functions------------------------- //
-
 
 const toggleBookInfoDiv = (event) => {
     if (event.target.tagName === "IMG") {
@@ -317,6 +320,19 @@ const editOrDeleteReview = (event) => {
     }
 }
 
+const sortByTitle = event => {
+    allBooksArray.sort(function (a, b) {
+        const titleA = a.title 
+        const titleB = b.title 
+        return titleA.localeCompare(titleB)
+    })
+
+    bookContainer.innerHTML = ""
+    allBooksArray.forEach(book => {
+        renderOneBookCover(book)
+    })
+}
+
 // ------------Event Listener------------------------- //
 bookContainer.addEventListener("click", toggleBookInfoDiv)
 
@@ -329,6 +345,8 @@ editForm.addEventListener("submit", submitEditBookForm)
 reviewForm.addEventListener("submit", submitReviewForm)
 
 reviewBox.addEventListener("click", editOrDeleteReview)
+
+titleSort.addEventListener("click", sortByTitle)
 
 // ------------Initialize------------------------- //
 
