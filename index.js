@@ -45,6 +45,7 @@ const editReviewDiv = document.querySelector("#edit-review-div")
 const bookDetail = document.querySelector("#book-detail")
 const pageThree = document.querySelector("#page-three")
 const titleSort = document.querySelector("#title-sort")
+const sortDropdown = document.querySelector("#sort")
 let reviewId
 
 // ------------Fetch Functions------------------------- //
@@ -320,17 +321,33 @@ const editOrDeleteReview = (event) => {
     }
 }
 
-const sortByTitle = event => {
-    allBooksArray.sort(function (a, b) {
-        const titleA = a.title 
-        const titleB = b.title 
-        return titleA.localeCompare(titleB)
-    })
 
-    bookContainer.innerHTML = ""
-    allBooksArray.forEach(book => {
-        renderOneBookCover(book)
-    })
+const sortByTitle = event => {
+    switch (event.target.value) {
+        case "title":
+            allBooksArray.sort(function (a, b) {
+                const titleA = a.title 
+                const titleB = b.title 
+                return titleA.localeCompare(titleB)
+            })
+            console.log(allBooksArray)
+            bookContainer.innerHTML = ""
+            allBooksArray.forEach(book => {
+                renderOneBookCover(book)
+            })
+
+        // case "author":
+        //     allBooksArray.sort(function (a, b) {
+        //         const authorA = a.author.split(" ")[1] 
+        //         const authorB = b.author.split(" ")[1] 
+        //         return authorA.localeCompare(authorB)
+        //     })
+        //     console.log(allBooksArray)
+        //     bookContainer.innerHTML = ""
+        //     allBooksArray.forEach(book => {
+        //         renderOneBookCover(book)
+        //     })
+    } 
 }
 
 // ------------Event Listener------------------------- //
@@ -346,7 +363,10 @@ reviewForm.addEventListener("submit", submitReviewForm)
 
 reviewBox.addEventListener("click", editOrDeleteReview)
 
-titleSort.addEventListener("click", sortByTitle)
+// titleSort.addEventListener("click", sortByTitle)
+
+sortDropdown.addEventListener("change", sortByTitle)
+
 
 // ------------Initialize------------------------- //
 
