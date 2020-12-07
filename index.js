@@ -365,6 +365,18 @@ const sortByTitle = event => {
                 renderOneBookCover(book)
             })
             break
+
+        case "release-date":
+            allBooksArray.sort(function (a, b) {
+                return b.year - a.year
+            })
+
+            console.log(allBooksArray)
+            bookContainer.innerHTML = ""
+            allBooksArray.forEach(book => {
+                renderOneBookCover(book)
+            })
+            break
     } 
 }
 
