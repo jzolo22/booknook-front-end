@@ -16,9 +16,16 @@ const moreBooks = () => {
         .then(bookArray => {
             const newArray = bookArray.slice(0, 12)
             newArray.forEach(book => {
-                renderOneBookCover(book)
-                allBooksArray.push(book)
+                if(allBookIds.includes(book.id)){
+                    console.log("already have this book!")
+                }
+                else if (!allBookIds.includes(book.id)){
+                    renderOneBookCover(book)
+                    allBooksArray.push(book)
+                    allBookIds.push(book.id)
+                }
             })
+            console.log(allBookIds)
         })
 }
 
@@ -52,6 +59,7 @@ let reviewId
 
 const url = "http://localhost:3000"
 let allBooksArray = []
+let allBookIds = []
 
 function fetchBooks () {
     fetch(`${url}/books`)
@@ -62,8 +70,11 @@ function fetchBooks () {
             firstTwelveArray.forEach(book => {
                 renderOneBookCover(book)
                 allBooksArray.push(book)
+                allBookIds.push(book.id)
+                
             })
         })
+        console.log(allBookIds)
 }
 
 function fetchBook(id) {
