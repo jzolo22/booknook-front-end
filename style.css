@@ -146,7 +146,7 @@ body, html {
 
 height: 100%;
 background-image: linear-gradient(rgba(255, 255, 255, 0.548), rgba(255, 255, 255, 0.452));
-overflow: auto;
+/* overflow: auto; */
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
@@ -385,7 +385,7 @@ p:hover, div>img:hover {
 
 #book-detail {
   text-align: center;
-  overflow: auto;
+  /* overflow: auto; */
   position: inherit;
   font-size: larger;
   margin: 30px;
@@ -399,7 +399,7 @@ p:hover, div>img:hover {
 }
 
 #outer-review-box {
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 #review-open-btn, #add-open-btn, #edit-book-open-btn{
