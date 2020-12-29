@@ -53,7 +53,7 @@ let reviewId
 
 // ------------Fetch Functions------------------------- //
 
-const url = "http://localhost:3000"
+const url = "https://bknk.herokuapp.com/"
 let allBooksArray = []
 let allBookIds = []
 
