@@ -16,7 +16,7 @@ window.onbeforeunload()
 nameForm.addEventListener("submit", submitName)
 
 function createUser(name) {
-    fetch("http://localhost:3000/users", {
+    fetch("https://bknk.herokuapp.com/users", {
         method: "POST", 
         headers: {
             "Content-Type": "application/json"
